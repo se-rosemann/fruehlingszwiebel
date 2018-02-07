@@ -1,6 +1,8 @@
 package de.god.fruehlingszwiebeldemo.domain.car;
 
+import de.god.fruehlingszwiebeldemo.api.car.CarReadModel;
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,4 +69,22 @@ public class CarDomainService {
         // Save it
         carRepository.saveCar(car);
     }
+
+
+    /**
+     * Customer said: Every day im looking for the worst car in the past month
+     */
+    public CarReadModel findTheWorstCarPastMonth() {
+        // The repository does the job
+        return carRepository.findTheWorstCarPastMonth();
+    }
+
+    public static CarReadModel convertCar2CarReadModel(Car car) {
+        CarReadModel carReadModel = new CarReadModel();
+        carReadModel.vehicleIdentificationNumber = car.getVehicleIdentificationNumber();
+        carReadModel.setVersion(car.getVersion());
+        carReadModel.setId(car.getId());
+        return carReadModel;
+    }
+
 }

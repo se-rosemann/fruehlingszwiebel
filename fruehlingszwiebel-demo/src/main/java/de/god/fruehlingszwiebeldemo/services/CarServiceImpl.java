@@ -1,8 +1,13 @@
 package de.god.fruehlingszwiebeldemo.services;
 
+import de.god.fruehlingszwiebeldemo.api.car.CarReadModel;
 import de.god.fruehlingszwiebeldemo.api.car.CarService;
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
-import de.god.fruehlingszwiebeldemo.domain.car.*;
+import de.god.fruehlingszwiebeldemo.domain.car.Car;
+import de.god.fruehlingszwiebeldemo.domain.car.CarDomainService;
+import de.god.fruehlingszwiebeldemo.domain.car.CarRepository;
+import de.god.fruehlingszwiebeldemo.domain.car.WheelPosition;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +48,13 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public void rotateWheels(UUID carId, Map<UUID, WheelPosition> newPositionByTireID, long mileAge) {
+    public void rotateTires(UUID carId, Map<UUID, WheelPosition> newPositionByTireID, long mileAge) {
         carDomainService.rotateWheels(carId, newPositionByTireID, mileAge);
+    }
+
+    @Override
+    @Transactional
+    public CarReadModel findTheWorstCarPastMonth() {
+        return carDomainService.findTheWorstCarPastMonth();
     }
 }

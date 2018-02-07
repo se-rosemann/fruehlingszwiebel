@@ -1,9 +1,14 @@
 package de.god.fruehlingszwiebeldemo.domain;
 
 
+import de.god.fruehlingszwiebeldemo.api.car.CarReadModel;
 import de.god.fruehlingszwiebeldemo.api.car.CarService;
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
-import de.god.fruehlingszwiebeldemo.domain.car.*;
+import de.god.fruehlingszwiebeldemo.domain.car.Car;
+import de.god.fruehlingszwiebeldemo.domain.car.CarDomainService;
+import de.god.fruehlingszwiebeldemo.domain.car.CarRepository;
+import de.god.fruehlingszwiebeldemo.domain.car.WheelPosition;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -44,6 +49,13 @@ public class FullApplicationTestInMemory extends FullApplicationTest {
             }
 
             @Override
+            public CarReadModel findTheWorstCarPastMonth() {
+                // For demonstration-purpose we convert the first Car we find
+                Car firstCar = this.findAllCars().iterator().next();
+                return CarDomainService.convertCar2CarReadModel(firstCar);
+            }
+
+            @Override
             public List<Car> findAllCars() {
                 return cars.values().stream().sorted((c1, c2) -> c1.getId().compareTo(c2.getId())).collect(Collectors.toList());
             }
@@ -72,9 +84,14 @@ public class FullApplicationTestInMemory extends FullApplicationTest {
             }
 
             @Override
-            public void rotateWheels(UUID carId, Map<UUID, WheelPosition> newPositions, long mileAge) {
+            public void rotateTires(UUID carId, Map<UUID, WheelPosition> newPositions, long mileAge) {
                 // No transaction needed, just delegate to domainService
                 carDomainService.rotateWheels(carId, newPositions, mileAge);
+            }
+
+            @Override
+            public CarReadModel findTheWorstCarPastMonth() {
+                return carDomainService.findTheWorstCarPastMonth();
             }
         };
     }

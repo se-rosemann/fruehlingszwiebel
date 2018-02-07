@@ -2,7 +2,7 @@ package de.god.fruehlingszwiebeldemo.services;
 
 import de.god.fruehlingszwiebeldemo.api.car.CarService;
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
-import de.god.fruehlingszwiebeldemo.domain.car.CarCreationException;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import de.god.fruehlingszwiebeldemo.domain.car.WheelPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

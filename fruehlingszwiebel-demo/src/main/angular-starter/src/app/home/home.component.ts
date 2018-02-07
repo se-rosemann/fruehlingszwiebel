@@ -54,17 +54,58 @@ export class HomeComponent implements OnInit {
     this.loadCars();
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   public loadCars() {
-    // Standard-Way
-    // this.carService.getCars().subscribe(cars => this.cars = cars);
+    //
+    // Mock
+    //
+    this.carService.getCars().subscribe(cars => this.cars = cars);
 
-    // Spring-way
-    // this.carSpringService.getCars().subscribe(cars => this.cars = cars);
+    //
+    // Spring
+    //
+    this.carSpringService.getCars().subscribe(cars => this.cars = cars);
 
-    // OData-Way
+    //
+    // OData
+    //
+    // Get cars with wheels
     let expandOptions: CarExpands = new CarExpands().expandTires().expandWheels();
     this.carService.findCars(expandOptions);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public submitState(value: string) {
     console.log('submitState', value);

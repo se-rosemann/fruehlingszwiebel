@@ -1,8 +1,7 @@
 package de.god.fruehlingszwiebeldemo.api.car;
 
 import de.god.fruehlingszwiebeldemo.domain.car.Car;
-import de.god.fruehlingszwiebeldemo.domain.car.CarCreationException;
-import de.god.fruehlingszwiebeldemo.domain.car.Tire;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import de.god.fruehlingszwiebeldemo.domain.car.WheelPosition;
 
 import java.util.Map;
@@ -23,5 +22,10 @@ public interface CarService {
     /**
      * Rotate the wheels
      */
-    void rotateWheels(UUID carId, Map<UUID, WheelPosition> newPositionByTireID, long mileAge);
+    void rotateTires(UUID carId, Map<UUID, WheelPosition> newPositionByTireID, long mileAge);
+
+    /**
+     * Customer said: Every day im looking for the worst car in the past month
+     */
+    CarReadModel findTheWorstCarPastMonth();
 }

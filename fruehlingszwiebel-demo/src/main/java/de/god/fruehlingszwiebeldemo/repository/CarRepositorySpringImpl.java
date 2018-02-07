@@ -1,11 +1,12 @@
 package de.god.fruehlingszwiebeldemo.repository;
 
+import de.god.fruehlingszwiebeldemo.api.car.CarReadModel;
 import de.god.fruehlingszwiebeldemo.domain.car.Car;
+import de.god.fruehlingszwiebeldemo.domain.car.CarDomainService;
 import de.god.fruehlingszwiebeldemo.domain.car.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,15 @@ public class CarRepositorySpringImpl implements CarRepository {
     public Car findCarById(UUID carId) {
         // Delegate to CrudRepository.findOne
         return carRepositorySpring.findOne(carId);
+    }
+
+    @Override
+    public CarReadModel findTheWorstCarPastMonth() {
+        // Here we could execute a graph-query to fill a CarReadModel
+
+        // For demonstration-purpose we convert the first Car we find
+        Car firstCar = carRepositorySpring.findAll().iterator().next();
+        return CarDomainService.convertCar2CarReadModel(firstCar);
     }
 
     @Override

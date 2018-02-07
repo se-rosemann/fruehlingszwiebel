@@ -1,4 +1,4 @@
-package de.god.fruehlingszwiebeldemo.domain.car;
+package de.god.fruehlingszwiebeldemo.domain.car.exception;
 
 public class CarCreationException extends Exception {
 

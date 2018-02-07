@@ -3,6 +3,7 @@ package de.god.fruehlingszwiebeldemo.domain;
 import de.god.fruehlingszwiebeldemo.api.car.CarService;
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
 import de.god.fruehlingszwiebeldemo.domain.car.*;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -56,7 +57,7 @@ public abstract class FullApplicationTest {
         newPositions.put(car.getTires().get(2).getId(), WheelPosition.REAR_LEFT);
         newPositions.put(car.getTires().get(3).getId(), WheelPosition.FRONT_RIGHT);
 
-        getCarService().rotateWheels(car.getId(), newPositions, mileAge);
+        getCarService().rotateTires(car.getId(), newPositions, mileAge);
 
         // Asserts...
 

@@ -1,6 +1,9 @@
 package de.god.fruehlingszwiebeldemo.domain.car;
 
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarRotationException;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.TireCreationException;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

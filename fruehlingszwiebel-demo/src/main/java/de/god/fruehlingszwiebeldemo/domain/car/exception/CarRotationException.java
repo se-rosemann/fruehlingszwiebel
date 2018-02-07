@@ -1,4 +1,4 @@
-package de.god.fruehlingszwiebeldemo.domain.car;
+package de.god.fruehlingszwiebeldemo.domain.car.exception;
 
 /**
  * Discussion: Make this a RuntimeException?

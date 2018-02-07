@@ -1,5 +1,7 @@
 package de.god.fruehlingszwiebeldemo.domain.car;
 
+import de.god.fruehlingszwiebeldemo.domain.car.exception.TireCreationException;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -11,7 +13,7 @@ import java.util.List;
 public class Tire extends de.god.fruehlingszwiebeldemo.domain.Entity {
     private String type;
 
-    @OneToMany(targetEntity = TireUsageInterval.class,  cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = TireUsageInterval.class, cascade = CascadeType.ALL)
     private List<TireUsageInterval> usageIntervalList = new ArrayList<>();
 
     private Tire() {

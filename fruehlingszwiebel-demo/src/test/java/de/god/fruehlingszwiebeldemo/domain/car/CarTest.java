@@ -1,6 +1,7 @@
 package de.god.fruehlingszwiebeldemo.domain.car;
 
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

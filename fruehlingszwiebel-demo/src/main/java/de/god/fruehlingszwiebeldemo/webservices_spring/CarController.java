@@ -1,9 +1,10 @@
 package de.god.fruehlingszwiebeldemo.webservices_spring;
 
+import de.god.fruehlingszwiebeldemo.api.car.CarReadModel;
 import de.god.fruehlingszwiebeldemo.api.car.CarService;
 import de.god.fruehlingszwiebeldemo.api.car.CarWriteModel;
 import de.god.fruehlingszwiebeldemo.domain.car.Car;
-import de.god.fruehlingszwiebeldemo.domain.car.CarCreationException;
+import de.god.fruehlingszwiebeldemo.domain.car.exception.CarCreationException;
 import de.god.fruehlingszwiebeldemo.domain.car.CarRepository;
 import de.god.fruehlingszwiebeldemo.webservices_spring.bodies.RotateTiresBody;
 import io.swagger.annotations.Api;
@@ -43,8 +44,17 @@ public class CarController {
 
     @ApiOperation(value = "Rotate positions of the Tires.",
             notes = "All wheelPositions must be set.")
-    @RequestMapping(value = "/api/car/rotatewheels", method = RequestMethod.POST)
-    public void rotateWheels(@RequestBody RotateTiresBody pRotateTiresBody) throws CarCreationException {
-        carService.rotateWheels(pRotateTiresBody.carId, pRotateTiresBody.newPositionByTireID, pRotateTiresBody.mileAge);
+    @RequestMapping(value = "/api/car/rotatetires", method = RequestMethod.POST)
+    public void rotateTires(@RequestBody RotateTiresBody pRotateTiresBody) throws CarCreationException {
+        carService.rotateTires(pRotateTiresBody.carId, pRotateTiresBody.newPositionByTireID, pRotateTiresBody.mileAge);
     }
+
+    @ApiOperation(value = "Finds the worst car in the past month, this is a ReadModel from the API.",
+            notes = "Cars are example-dummies and created at application-startup")
+    @RequestMapping(value = "/api/car/findTheWorstCarPastMonth", method = RequestMethod.GET)
+    public CarReadModel getWorstCar() {
+        return carService.findTheWorstCarPastMonth();
+    }
+
+
 }
